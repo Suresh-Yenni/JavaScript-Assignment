@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>Progress Bar</title>
+    <style>
+       #outer{
+         width: 400px;
+         height: 30px;
+         background-color: black;
+       }
+       #inner{
+         width: 0%;
+         height: 100%;
+         background-color: grey;
+       }
+       #lable{
+         text-align: center;
+         color: white;
+         line-height: 30px;
+       }
+    </style>
+    <script>
+      function start()
+      {
+        if (!start.count) start.count = 1;
+        document.getElementById("in").value = start.count;
+        if(!start.width)
+        {
+          start.width = 0;
+          var ele = document.getElementById("inner");
+          var tym = setInterval(fill, 100);
+          function fill()
+          {
+            flag = 1;
+            if(start.width > 99) clearInterval(tym);
+            else{
+                start.width++;
+                ele.style.width = start.width + "%";
+                document.getElementById("label").innerHTML = start.width + "%";
+                start.count = start.width;
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p>
+      <div id="outer" >
+        <div id="inner"><div id="label">0%</div></div>
+      </div>
+    </p>
+    <input type="text" placeholder="Enter number" id="in" value=0 />
+    <button onclick="start()">Action</button>
+  </body>
+</html>
